@@ -3,7 +3,7 @@ import Card from '../Cards/Card'
 
 interface Props {}
 
-const CardList = (props: Props) => {
+const CardList: React.FC<Props> = ( props ) => {
   return (
     <div>
         <Card  companyName='Apple' ticker='AAPL' price={100}/>
@@ -12,7 +12,5 @@ const CardList = (props: Props) => {
     </div>
   )
 }
-
-CardList.propTypes = {}
 
 export default CardList
