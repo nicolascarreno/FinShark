@@ -29,7 +29,7 @@ export const searchCompanies = async (query: string) => {
     };
     
     try {
-        const response = await axios.post<SearchResponse>(
+        const response = await axios.post(
             "/v1/search",
             body,
             {
@@ -40,7 +40,7 @@ export const searchCompanies = async (query: string) => {
             }
         );
 
-        return response.data;
+        return response.data.result.items;
     } catch (error) {
         if (axios.isAxiosError(error)) {
             console.log("error message: ", error.message)
