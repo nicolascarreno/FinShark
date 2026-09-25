@@ -17,35 +17,16 @@ interface SearchResponse {
     data: CompanySearch[];
 }
 
-export const searchCompanies = async (query: string) => {
-    const body: SearchRequestBody = {
-        search_text: query,
-        quote_types: ["mutualfund", "etf", "stock"],
-        offset: 0,
-        limit: 10,
-        sort_by: [{ selector: "amount_usd", desc: true }],
-        has_public_financial_reports: true,
-        tag: "",
-    };
-    
+export const searchCompanies = async (query: string) => {  
     try {
-        const response = await axios.post(
-            "/v1/search",
-            body,
-            {
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${process.env.REACT_APP_API_KEY}`,
-                },
-            }
-        );
+        const result = await axios.get<[]>(
+            `https://financialmodelingprep.com/stable/search-symbol?query=${query}&exchange=NASDAQ&apikey=${process.env.REACT_APP_API_KEY2}`
+        )
 
-        return response.data.result.items;
+        return result.data;
+
     } catch (error) {
         if (axios.isAxiosError(error)) {
-            console.log("error message: ", error.message)
-            console.log("error data:", error.response?.data); 
-            console.log("error:", error); 
             return error.message
         } else {
             console.log("unexpected error: ", error)
