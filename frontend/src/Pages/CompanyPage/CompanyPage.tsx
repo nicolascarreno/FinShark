@@ -11,7 +11,7 @@ interface Props {}
 
 const CompanyPage = (props: Props) => {
  
-  let { ticker } = useParams();
+  let { ticker } = useParams<string>();
   const [companyProfile, setCompanyProfile] = useState<CompanyProfile>();
 
   useEffect(() => {
@@ -27,7 +27,7 @@ const CompanyPage = (props: Props) => {
       { companyProfile ? (
         <div className="w-full relative flex ct-docs-disable-sidebar-content overflow-x-hidden">
           <Sidebar />
-          <CompanyDashboard>
+          <CompanyDashboard ticker={ticker!}>
             <Tile title="Company Name" subtitle={companyProfile.companyName}></Tile>
           </CompanyDashboard>
         </div>

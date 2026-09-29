@@ -1,33 +1,16 @@
 import React from 'react'
-import { TestDataCompany } from '../Table/TestData'
-import { render } from '@testing-library/react';
 
-type Props = {}
+type Props = {
+    config: any,
+    data: any
+}
 
-const data = TestDataCompany[0];
 
-const config = [
-    {
-        label: "Company Name",
-        render: (company: any) => company.companyName,
-        subTitle: "This is the company name"
-    },
-    {
-        label: "DCF",
-        render: (company: any) => company.dcf,
-        subTitle:
-        "This is the value of an investment today based on future cash flows",
-  },
-  {     label: "Beta", 
-        render: (company: any) => company.beta },
-
-]
-
-const RatioList = (props: Props) => {
+const RatioList = ({ config, data }: Props) => {
   
-  const renderedRows = config.map((row) => {
+  const renderedRows = config.map((row: any, index: number) => {
     return(
-        <li className="py-3 sm:py-4">
+        <li key={`${row.label}-${index}`} className="py-3 sm:py-4">
         <div className="flex items-center space-x-4">
           <div className="flex-1 min-w-0">
             <p className="text-sm font-medium text-gray-900 truncate">
@@ -51,7 +34,7 @@ const RatioList = (props: Props) => {
     )
   })   
   return (
-    <div className='bg-white shadow rounded-lg mb-4 p-4 sm:p-6 h-full'>
+    <div className='bg-white shadow rounded-lg ml-4 mt-4 mb-4 p-4 sm:p-6 w-full'>
         <ul className="divide-y divide-gray-200">{renderedRows}</ul>
     </div>
   )
