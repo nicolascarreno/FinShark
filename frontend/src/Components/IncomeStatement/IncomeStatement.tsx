@@ -46,7 +46,7 @@ const configs = [
   {
     label: "Net Income Ratio",
     render: (company: CompanyIncomeStatement) =>
-      formatRatio(company.netIncomeRatio),
+      formatRatio(company.netIncome / company.revenue),
   },
   {
     label: "Earnings Per Share",
@@ -55,22 +55,22 @@ const configs = [
   {
     label: "Earnings Per Diluted",
     render: (company: CompanyIncomeStatement) =>
-      formatRatio(company.epsdiluted),
+      formatRatio(company.epsDiluted),
   },
   {
     label: "Gross Profit Ratio",
     render: (company: CompanyIncomeStatement) =>
-      formatRatio(company.grossProfitRatio),
+      formatRatio(company.grossProfit / company.revenue),
   },
   {
     label: "Opearting Income Ratio",
     render: (company: CompanyIncomeStatement) =>
-      formatRatio(company.operatingIncomeRatio),
+      formatRatio(company.operatingIncome / company.revenue),
   },
   {
     label: "Income Before Taxes Ratio",
     render: (company: CompanyIncomeStatement) =>
-      formatRatio(company.incomeBeforeTaxRatio),
+      formatRatio(company.incomeBeforeTax / company.revenue),
   },
 ];
 
@@ -82,6 +82,7 @@ const IncomeStatement = (props: Props) => {
   useEffect(() => {
     const getCompanyIncomeStatement = async () => {
       const result = await getIncomeStatement(ticker);
+      console.log(result);
       setIncomeStatement(result?.data)
     }
     getCompanyIncomeStatement();
