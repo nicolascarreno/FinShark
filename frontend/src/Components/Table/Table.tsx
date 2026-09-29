@@ -3,25 +3,17 @@ import { testIncomeStatementData } from './TestData'
 
 const data = testIncomeStatementData; 
 
-type Props = {}
+type Props = {
+  config: any,
+  data: any
+}
 
-const configs = [
-    {
-        label: "Year",
-        render: (company: any) => company.acceptedDate,
-    },
-    {
-        label: "Cost Of Revenue",
-        render: (company: any) => company.costOfRevenue,
-    }
-]
-
-const Table = (props: Props) => {
+const Table = ({ data, config }: Props) => {
   
-  const renderedRows = data.map((company) => {
+  const renderedRows = data.map((company: any) => {
     return(
         <tr key={`${company.cik}-${company.date}`}>
-            {configs.map((val: any) => {
+            {config.map((val: any) => {
                 return(
               <td key={val.label} className="p-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         {val.render(company)}
@@ -32,14 +24,14 @@ const Table = (props: Props) => {
     )
   })
 
-  const renderedHeaders = configs.map((config: any) => {
+  const renderedHeaders = config.map((config: any) => {
     return(
-         <th
-        className="p-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-        key={config.label}
-      >
-        {config.label}
-      </th>
+        <th
+          className="p-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+          key={config.label}
+        >
+          {config.label}
+        </th>
     );
   })
 
