@@ -82,7 +82,6 @@ const IncomeStatement = (props: Props) => {
   useEffect(() => {
     const getCompanyIncomeStatement = async () => {
       const result = await getIncomeStatement(ticker);
-      console.log(result);
       setIncomeStatement(result?.data)
     }
     getCompanyIncomeStatement();
