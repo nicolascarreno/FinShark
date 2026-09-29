@@ -112,12 +112,14 @@ export interface CompanyKeyMetrics {
   netIncomePerShareTTM: number;
   operatingCashFlowPerShareTTM: number;
   freeCashFlowPerShareTTM: number;
+  freeCashFlowYieldTTM: number;
   cashPerShareTTM: number;
   bookValuePerShareTTM: number;
   tangibleBookValuePerShareTTM: number;
+  tangibleAssetValueTTM: number;
   shareholdersEquityPerShareTTM: number;
   interestDebtPerShareTTM: number;
-  marketCapTTM: number;
+  marketCap: number;
   enterpriseValueTTM: number;
   peRatioTTM: number;
   priceToSalesRatioTTM: number;
@@ -127,6 +129,7 @@ export interface CompanyKeyMetrics {
   ptbRatioTTM: number;
   evToSalesTTM: number;
   enterpriseValueOverEBITDATTM: number;
+  evToEBITDATTM: number;
   evToOperatingCashFlowTTM: number;
   evToFreeCashFlowTTM: number;
   earningsYieldTTM: number;
@@ -164,7 +167,7 @@ export interface CompanyKeyMetrics {
   receivablesTurnoverTTM: number;
   payablesTurnoverTTM: number;
   inventoryTurnoverTTM: number;
-  roeTTM: number;
+  returnOnEquityTTM: number;
   capexPerShareTTM: number;
   dividendPerShareTTM: number;
   debtToMarketCapTTM: number;
