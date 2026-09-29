@@ -1,5 +1,5 @@
 import axios from "axios"
-import { CompanyKeyMetrics, CompanyProfile, CompanySearch } from '../Types/Company'
+import { CompanyIncomeStatement, CompanyKeyMetrics, CompanyProfile, CompanySearch } from '../Types/Company'
 
 interface SearchRequestBody {
     search_text?: string;
@@ -50,6 +50,17 @@ export const getKeyMetrics = async (query: string) => {
     try {
         const data = axios.get<CompanyKeyMetrics[]>(
             `https://financialmodelingprep.com/stable/key-metrics-ttm?symbol=${query}&apikey=${process.env.REACT_APP_API_KEY2}`
+        );
+        return data;
+    } catch (error: any) {
+        console.log(`error message from API: ${error.message}`);
+    }
+}
+
+export const getIncomeStatement = async (query: string) => {
+    try {
+        const data = axios.get<CompanyIncomeStatement[]>(
+            `https://financialmodelingprep.com/stable/income-statement?symbol=${query}&apikey=${process.env.REACT_APP_API_KEY2}`
         );
         return data;
     } catch (error: any) {
