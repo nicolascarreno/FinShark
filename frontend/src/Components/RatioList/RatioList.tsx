@@ -13,10 +13,13 @@ const config = [
         subTitle: "This is the company name"
     },
     {
-        label: "Company Name",
-        render: (company: any) => company.companyName,
-        subTitle: "This is the company name"
-    }
+        label: "DCF",
+        render: (company: any) => company.dcf,
+        subTitle:
+        "This is the value of an investment today based on future cash flows",
+  },
+  {     label: "Beta", 
+        render: (company: any) => company.beta },
 
 ]
 
