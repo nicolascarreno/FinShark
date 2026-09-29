@@ -3,6 +3,7 @@ import { CompanyCashFlow } from '../../Types/Company';
 import { useOutletContext } from 'react-router-dom';
 import { getCashFlowStatement } from '../../Services/Companies';
 import Table from '../Table/Table';
+import { formatLargeMonetaryNumber, formatLargeNonMonetaryNumber } from '../../Helpers/NumberFormatting';
 
 type Props = {}
 
@@ -13,33 +14,33 @@ const config = [
   },
   {
     label: "Operating Cashflow",
-    render: (company: CompanyCashFlow) => company.operatingCashFlow,
+    render: (company: CompanyCashFlow) => formatLargeMonetaryNumber(company.operatingCashFlow),
   },
   {
     label: "Investing Cashflow",
     render: (company: CompanyCashFlow) =>
-      company.netCashUsedForInvestingActivites,
+      formatLargeMonetaryNumber(company.netCashProvidedByInvestingActivities),
   },
   {
     label: "Financing Cashflow",
     render: (company: CompanyCashFlow) =>
-      company.netCashUsedProvidedByFinancingActivities,
+      formatLargeMonetaryNumber(company.netCashProvidedByFinancingActivities),
   },
   {
     label: "Cash At End of Period",
-    render: (company: CompanyCashFlow) => company.cashAtEndOfPeriod,
+    render: (company: CompanyCashFlow) => formatLargeMonetaryNumber(company.cashAtEndOfPeriod),
   },
   {
     label: "CapEX",
-    render: (company: CompanyCashFlow) => company.capitalExpenditure,
+    render: (company: CompanyCashFlow) => formatLargeMonetaryNumber(company.capitalExpenditure),
   },
   {
     label: "Issuance Of Stock",
-    render: (company: CompanyCashFlow) => company.commonStockIssued,
+    render: (company: CompanyCashFlow) => formatLargeNonMonetaryNumber(company.commonStockIssuance),
   },
   {
     label: "Free Cash Flow",
-    render: (company: CompanyCashFlow) => company.freeCashFlow,
+    render: (company: CompanyCashFlow) => formatLargeMonetaryNumber(company.freeCashFlow),
   },
 ];
 
@@ -52,6 +53,7 @@ const CashflowStatement = (props: Props) => {
   useEffect(() => {
     const companyCashFlowStatement = async () => {
         const result = await getCashFlowStatement(ticker!);
+        console.log(result);
         setCashflowStatement(result!.data)
     }
     companyCashFlowStatement();
