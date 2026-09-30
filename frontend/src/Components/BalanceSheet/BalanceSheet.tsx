@@ -4,6 +4,7 @@ import { CompanyBalanceSheet } from '../../Types/Company';
 import { useOutletContext } from 'react-router';
 import { getBalanceSheet } from '../../Services/Companies';
 import RatioList from '../RatioList/RatioList';
+import Spinner from '../Spinner/Spinner';
 
 type Props = {}
 
@@ -93,7 +94,9 @@ const BalanceSheet = (props: Props) => {
         {balanceSheet ? (
             <RatioList data={ balanceSheet} config={config} />
         ) : (
-            <>Loading...</>
+          <div className="bg-white shadow rounded-lg ml-4 mt-4 mb-4 p-4 sm:p-6 w-full flex justify-center">
+            <Spinner inline />
+          </div>
         )}
     </>
   )

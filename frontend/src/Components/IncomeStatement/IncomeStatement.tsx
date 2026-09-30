@@ -5,6 +5,7 @@ import { CompanyIncomeStatement } from '../../Types/Company';
 import { getIncomeStatement } from '../../Services/Companies';
 import { config } from 'process';
 import Table from '../Table/Table';
+import Spinner from '../Spinner/Spinner';
 
 type Props = {}
 
@@ -93,10 +94,9 @@ const IncomeStatement = (props: Props) => {
         <>
           <Table config={configs} data={IncomeStatement}/>
         </>
-      ) : (
-        <>
-          Loading...
-        </>)}
+        ) : (
+          <Spinner />
+        )}
     </>
   )
 }
