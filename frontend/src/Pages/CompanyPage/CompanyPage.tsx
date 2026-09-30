@@ -5,6 +5,7 @@ import { getCompanyProfile } from '../../Services/Companies';
 import Sidebar from '../../Components/Sidebar/Sidebar';
 import CompanyDashboard from '../../Components/CompanyDashboard/CompanyDashboard';
 import Tile from '../../Components/Tile/Tile';
+import { formatLargeMonetaryNumber } from '../../Helpers/NumberFormatting';
 
 
 interface Props {}
@@ -29,6 +30,12 @@ const CompanyPage = (props: Props) => {
           <Sidebar />
           <CompanyDashboard ticker={ticker!}>
             <Tile title="Company Name" subtitle={companyProfile.companyName}></Tile>
+            <Tile title="Price" subtitle={`${companyProfile.price.toString()} USD`}></Tile>
+            <Tile title="Sector" subtitle={companyProfile.sector}></Tile>
+            <Tile title="Market Cap" subtitle={formatLargeMonetaryNumber(companyProfile.marketCap.toString())}></Tile>
+            <p className='bg-white shadow rounded text-medium text-gray p-10'>
+              {companyProfile.description}
+            </p>
           </CompanyDashboard>
         </div>
       ) : (
