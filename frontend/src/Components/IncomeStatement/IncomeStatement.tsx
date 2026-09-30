@@ -95,7 +95,9 @@ const IncomeStatement = (props: Props) => {
           <Table config={configs} data={IncomeStatement}/>
         </>
         ) : (
-          <Spinner />
+          <div className="bg-white shadow rounded-lg ml-4 mt-4 mb-4 p-4 sm:p-6 w-full flex justify-center">
+            <Spinner inline />
+          </div>
         )}
     </>
   )
