@@ -7,6 +7,7 @@ import CompanyDashboard from '../../Components/CompanyDashboard/CompanyDashboard
 import Tile from '../../Components/Tile/Tile';
 import { formatLargeMonetaryNumber } from '../../Helpers/NumberFormatting';
 import Spinner from '../../Components/Spinner/Spinner';
+import CompFinder from '../../Components/CompFinder/CompFinder';
 
 
 interface Props {}
@@ -34,6 +35,7 @@ const CompanyPage = (props: Props) => {
             <Tile title="Price" subtitle={`${companyProfile.price.toString()} USD`}></Tile>
             <Tile title="Sector" subtitle={companyProfile.sector}></Tile>
             <Tile title="Market Cap" subtitle={formatLargeMonetaryNumber(companyProfile.marketCap.toString())}></Tile>
+            <CompFinder ticker={ticker!} />
             <p className='bg-white shadow rounded text-medium text-gray p-10'>
               {companyProfile.description}
             </p>
