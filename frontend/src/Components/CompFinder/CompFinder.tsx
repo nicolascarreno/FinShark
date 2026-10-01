@@ -13,8 +13,6 @@ const CompFinder = ({ ticker }: Props) => {
   useEffect(() => {
     const CompanyCompData = async () => {
         const result = await getCompData(ticker);
-        console.log(result);
-        console.log(result?.data)
         setCompData(result?.data);
     }
     CompanyCompData();

@@ -15,8 +15,6 @@ const TenKFinder = ({ ticker }: Props) => {
     const tenK = async () => {
         const result = await getTenK(ticker);
         setCompanyData(result?.data);
-        console.log("TEN K")
-        console.log(result)
     }
     tenK();
   }, [])
