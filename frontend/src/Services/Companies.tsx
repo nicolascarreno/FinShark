@@ -1,5 +1,7 @@
 import axios from "axios"
-import { CompanyBalanceSheet, CompanyCashFlow, CompanyCompData, CompanyIncomeStatement, CompanyKeyMetrics, CompanyProfile, CompanySearch } from '../Types/Company'
+import { CompanyBalanceSheet, CompanyCashFlow, CompanyCompData, CompanyIncomeStatement, CompanyKeyMetrics, CompanyProfile, CompanySearch, CompanyTenK } from '../Types/Company'
+import { format } from "path";
+import { formatDate } from "../Helpers/DateFormatting";
 
 interface SearchRequestBody {
     search_text?: string;
@@ -94,6 +96,20 @@ export const getCompData = async (query: string) => {
     try {
         const data = axios.get<CompanyCompData[]>(
             `https://financialmodelingprep.com/stable/stock-peers?symbol=${query}&apikey=${process.env.REACT_APP_API_KEY}`
+        );
+        return data;
+    } catch (error: any) {
+        console.log(`error message from API: ${error.message}`);
+    }
+}
+
+export const getTenK = async () => {
+    try {
+        const actualDate = formatDate(0);
+        const previousDate = formatDate(29);
+
+        const data = axios.get<CompanyTenK[]>(
+            `https://financialmodelingprep.com/stable/sec-filings-search/form-type?formType=10-K&from=${previousDate}&to=${actualDate}&page=0&limit=20&apikey=${process.env.REACT_APP_API_KEY}`
         );
         return data;
     } catch (error: any) {

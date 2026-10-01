@@ -405,7 +405,7 @@ export interface CompanyTenK {
   fillingDate: string;
   acceptedDate: string;
   cik: string;
-  type: string;
+  formType: string;
   link: string;
   finalLink: string;
 }
