@@ -8,6 +8,7 @@ import Tile from '../../Components/Tile/Tile';
 import { formatLargeMonetaryNumber } from '../../Helpers/NumberFormatting';
 import Spinner from '../../Components/Spinner/Spinner';
 import CompFinder from '../../Components/CompFinder/CompFinder';
+import TenKFinder from '../../Components/TenKFinder/TenKFinder';
 
 
 interface Props {}
@@ -36,6 +37,7 @@ const CompanyPage = (props: Props) => {
             <Tile title="Sector" subtitle={companyProfile.sector}></Tile>
             <Tile title="Market Cap" subtitle={formatLargeMonetaryNumber(companyProfile.marketCap.toString())}></Tile>
             <CompFinder ticker={ticker!} />
+            <TenKFinder ticker={ticker!}/>
             <p className='bg-white shadow rounded text-medium text-gray p-10'>
               {companyProfile.description}
             </p>
