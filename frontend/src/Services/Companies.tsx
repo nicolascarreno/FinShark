@@ -103,13 +103,13 @@ export const getCompData = async (query: string) => {
     }
 }
 
-export const getTenK = async () => {
+export const getTenK = async (query: string) => {
     try {
         const actualDate = formatDate(0);
         const previousDate = formatDate(29);
 
         const data = axios.get<CompanyTenK[]>(
-            `https://financialmodelingprep.com/stable/sec-filings-search/form-type?formType=10-K&from=${previousDate}&to=${actualDate}&page=0&limit=20&apikey=${process.env.REACT_APP_API_KEY}`
+            `https://financialmodelingprep.com/stable/sec-filings-search/symbol?symbol=${query}&from=${previousDate}&to=${actualDate}&page=0&limit=20&apikey=${process.env.REACT_APP_API_KEY}`
         );
         return data;
     } catch (error: any) {
