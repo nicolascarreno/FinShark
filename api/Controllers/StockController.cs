@@ -6,7 +6,7 @@ using api.ApplicationData;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Routing;
 
-namespace api.Conntrollers
+namespace api.Controllers
 {
     [Route("api/stock")]
     [ApiController]
