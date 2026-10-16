@@ -7,7 +7,6 @@ using api.DTOs.Stock;
 using api.Interfaces;
 using api.Models;
 using Microsoft.EntityFrameworkCore;
-using api.DTOs.Stock;
 
 namespace api.Repositories
 {
