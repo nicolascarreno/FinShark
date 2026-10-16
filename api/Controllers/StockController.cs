@@ -56,9 +56,9 @@ namespace api.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult Update([FromRoute] int id, [FromBody] UpdateStockRequestDTO stockDTO)
+        public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdateStockRequestDTO stockDTO)
         {
-            var stockModel = _context.Stocks.FirstOrDefault(s => s.Id == id);
+            var stockModel =  await _context.Stocks.FirstOrDefaultAsync(s => s.Id == id);
             if (stockModel == null)
             {
                 return NotFound();
@@ -71,10 +71,9 @@ namespace api.Controllers
             stockModel.MarketCap = stockDTO.MarketCap;
             stockModel.Purchase = stockDTO.Purchase;
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             return Ok(stockModel.ToStockDTO());
-
         }
 
         [HttpDelete("{id}")]
