@@ -45,14 +45,14 @@ namespace api.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create([FromBody] CreateStockRequestDTO stockDTO)
+        public async Task<IActionResult> Create([FromBody] CreateStockRequestDTO stockDTO)
         {
             var stockModel = stockDTO.ToStockFromCreateStockDTO();
-            _context.Stocks.Add(stockModel);
-            _context.SaveChanges();
+            
+            await _context.Stocks.AddAsync(stockModel);
+            await _context.SaveChangesAsync();
+            
             return CreatedAtAction(nameof(GetById), new { id = stockModel.Id }, stockModel.ToStockDTO());
-
-
         }
 
         [HttpPut("{id}")]
