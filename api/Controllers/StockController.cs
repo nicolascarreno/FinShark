@@ -7,6 +7,7 @@ using api.DTOs.Stock;
 using api.Mappers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Routing;
+using Microsoft.EntityFrameworkCore;
 
 namespace api.Controllers
 {
@@ -22,10 +23,10 @@ namespace api.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            var stocks = _context.Stocks.ToList()
-                .Select(s => s.ToStockDTO());
+            var stocks = await _context.Stocks.ToListAsync();
+            var stocksDTO = stocks.Select(s => s.ToStockDTO());
 
             return Ok(stocks); 
         }
