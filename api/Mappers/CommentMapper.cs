@@ -17,6 +17,7 @@ namespace api.Mappers
                 Title = comment.Title,
                 Content = comment.Content,
                 CreatedOn = comment.CreatedOn,
+                CreatedBy = comment.AppUser.UserName,
                 StockId = comment.StockId
             };
         }
@@ -27,7 +28,7 @@ namespace api.Mappers
             {
                 Title = commentDTO.Title,
                 Content = commentDTO.Content,
-                StockId = stockId
+                StockId = stockId,
             };
         }
 
