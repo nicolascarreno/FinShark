@@ -19,7 +19,7 @@ namespace api.Controllers
     {
         private readonly IStockRepository _stockRepo;
         
-        public StockController(ApplicationDBContext context, IStockRepository stockRepo)
+        public StockController(IStockRepository stockRepo)
         {
             _stockRepo = stockRepo;
         }
@@ -30,9 +30,9 @@ namespace api.Controllers
             if(!ModelState.IsValid) return BadRequest(ModelState);
             
             var stocks = await _stockRepo.GetAllAsync(query);
-            var stocksDTO = stocks.Select(s => s.ToStockDTO());
+            var stocksDTO = stocks.Select(s => s.ToStockDTO()).ToList();
 
-            return Ok(stocks); 
+            return Ok(stocksDTO); 
         }
 
         [HttpGet("{id:int}")]
